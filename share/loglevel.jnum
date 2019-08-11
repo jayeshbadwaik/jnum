@@ -1,0 +1,12 @@
+{
+  "namespace" : "test_jnum",
+  "name" : "log_level",
+  "string" : "log_level",
+  "underlying_type" : "std::size_t",
+  "option_list" :
+  {
+    "quiet"  : "0",
+    "normal": "10"
+  },
+  "default_option" : "normal"
+}
