@@ -65,6 +65,11 @@ install(
   DESTINATION  ${CMAKE_INSTALL_PREFIX}
   )
 
+install(
+  FILES ${PROJECT_SOURCE_DIR}/mit.license
+  DESTINATION  ${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}/copyright
+  )
+
 add_library(${PROJECT_NAME}::${LIBNAME} ALIAS ${LIBNAME})
 
 install(
