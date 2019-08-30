@@ -55,9 +55,9 @@ install(
 
 # Install Binaries
 install(
-  DIRECTORY ${PROJECT_SOURCE_DIR}/bin
+  DIRECTORY ${PROJECT_SOURCE_DIR}/scripts
   USE_SOURCE_PERMISSIONS
-  DESTINATION  ${CMAKE_INSTALL_PREFIX}
+  DESTINATION  ${CMAKE_INSTALL_PREFIX}/share/jnum/
   )
 
 install(

@@ -10,7 +10,7 @@ function(target_jnum TARGETNAME INDIR INFILE OUTDIR)
 
   add_custom_command(
     OUTPUT ${OUTFILE}
-    COMMAND ${PYTHON3_EXECUTABLE} @CMAKE_INSTALL_PREFIX@/bin/jnum.py
+    COMMAND ${PYTHON3_EXECUTABLE} @CMAKE_INSTALL_PREFIX@/share/jnum/scripts/jnum.py
     --input ${INFILE} --output ${OUTFILE} --relative ${REL_OUTFILE}
     DEPENDS ${INFILE}
     WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
