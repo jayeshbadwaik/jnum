@@ -6,14 +6,14 @@
 TEST_CASE("jnum : Type Checking", "[jnum]")
 {
   static_assert(
-      std::is_same_v<test_jnum::log_level::underlying_type, std::size_t>);
+    std::is_same_v<test_jnum::log_level::underlying_type, std::size_t>);
   static_assert(test_jnum::log_level::string == "log_level");
   static_assert(test_jnum::log_level::namespace_string == "test_jnum");
   static_assert(test_jnum::log_level::noption == 2);
-  static_assert(
-      test_jnum::log_level::option_array[0] == test_jnum::log_level::quiet);
-  static_assert(
-      test_jnum::log_level::option_array[1] == test_jnum::log_level::normal);
+  static_assert(test_jnum::log_level::option_array[0]
+                == test_jnum::log_level::quiet);
+  static_assert(test_jnum::log_level::option_array[1]
+                == test_jnum::log_level::normal);
   static_assert(test_jnum::log_level::option_string_array[0] == "quiet");
   static_assert(test_jnum::log_level::option_string_array[1] == "normal");
 }
@@ -33,7 +33,7 @@ TEST_CASE("jnum : Constructor from underlying_enum", "[jnum]")
   REQUIRE(loglevel == test_jnum::log_level::normal);
 
   REQUIRE_THROWS(jnum::to_jnum<test_jnum::log_level>(
-      static_cast<test_jnum::log_level::enum_type>(45)));
+    static_cast<test_jnum::log_level::enum_type>(45)));
 }
 
 TEST_CASE("jnum : Constructor from string_name", "[jnum]")
@@ -53,7 +53,24 @@ TEST_CASE("jnum : Convert to string", "[jnum]")
 TEST_CASE("jnum : Convert to namespaced string", "[jnum]")
 {
   auto const loglevel = jnum::to_jnum<test_jnum::log_level>(10);
-  REQUIRE(
-      jnum::to_namespaced_string(loglevel) == "test_jnum::log_level::normal");
+  REQUIRE(jnum::to_namespaced_string(loglevel)
+          == "test_jnum::log_level::normal");
 }
 
+TEST_CASE("jnum : Key Value Pair", "[jnum]")
+{
+  auto const string_value = test_jnum::log_level::string;
+  auto const value = test_jnum::log_level::normal.underlying_value();
+
+  auto const jnum
+    = jnum::read_key_value_pair<test_jnum::log_level>(string_value, value);
+  REQUIRE(jnum == test_jnum::log_level::normal);
+
+  auto const kvp = jnum::key_value_pair(jnum);
+  REQUIRE(kvp.key == string_value);
+  REQUIRE(kvp.value == value);
+
+  auto const ksp = jnum::key_string_pair(jnum);
+  REQUIRE(ksp.key == string_value);
+  REQUIRE(ksp.value == jnum::to_string(jnum));
+}

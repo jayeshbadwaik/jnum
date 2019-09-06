@@ -99,6 +99,50 @@ auto to_namespaced_string(Jnum const& jnum, A const& a = A()) -> string<A>
          + std::string(Jnum::string, a) + std::string("::", a)
          + std::string(option_string_array[index], a);
 }
+
+template <typename Jnum,
+          typename Str,
+          typename = std::enable_if_t<is_jnum_v<Jnum>>>
+constexpr auto read_key_value_pair(Str const& str,
+                                   typename Jnum::underlying_type const& value)
+  -> Jnum
+{
+
+  if (str != Jnum::string) {
+    throw std::runtime_error("Unexpected Key Found");
+  }
+  return to_jnum<Jnum>(value);
+}
+
+template <typename Jnum,
+          typename Str,
+          typename CStr,
+          typename = std::enable_if_t<is_jnum_v<Jnum>>>
+constexpr auto read_key_string_pair(Str const& str, CStr const& value) -> Jnum
+{
+
+  if (str != Jnum::string) {
+    throw std::runtime_error("Unexpected Key Found");
+  }
+  return to_jnum<Jnum>(value);
+}
+
+template <typename Jnum>
+struct key_value_pair {
+  static constexpr std::string_view key{Jnum::string};
+  typename Jnum::underlying_type value;
+
+  constexpr key_value_pair(Jnum const& e) : value(e.underlying_value()) {}
+};
+
+template <typename Jnum>
+struct key_string_pair {
+  static constexpr std::string_view key{Jnum::string};
+  std::string_view value;
+
+  key_string_pair(Jnum const& e) : value(to_string(e)) {}
+};
+
 } // namespace jnum
 
 #endif // JNUM_JNUM_HPP
