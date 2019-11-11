@@ -21,5 +21,5 @@ cmake \
   ../code
 popd
 cp ../clang-tidy/compile_commands.json .
-/opt/jaystack/compiler/llvm-8.0/share/clang/run-clang-tidy.py -quiet -j 2
+/opt/jaystack/compiler/llvm-9.0.0/share/clang/run-clang-tidy.py -quiet -j 2
 

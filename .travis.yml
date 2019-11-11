@@ -10,9 +10,9 @@ branches:
     - staging
 
 env:
-  - PLATFORM=llvm-7
-  - PLATFORM=llvm-8
-  - PLATFORM=llvm-master
+  - PLATFORM=llvm-8.0.0
+  - PLATFORM=llvm-8.0.1
+  - PLATFORM=llvm-9.0.0
 
 before_script :
   - docker pull jayeshbadwaik/jnumdocker
