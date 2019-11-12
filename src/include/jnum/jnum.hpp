@@ -134,6 +134,8 @@ struct key_value_pair {
 
   constexpr key_value_pair(Jnum const& e) : value(e.underlying_value()) {}
 };
+template <typename Jnum>
+key_value_pair(Jnum const& e)->key_value_pair<Jnum>;
 
 template <typename Jnum>
 struct key_string_pair {
