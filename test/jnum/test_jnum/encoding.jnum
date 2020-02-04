@@ -1,13 +1,10 @@
 {
-  "namespace" :"test_jnum",
-  "name" :"log_level",
-  "string" :"log_level",
+  "namespace" :"std",
+  "name" :"encoding",
+  "string" :"encoding",
   "underlying_type" :"std::size_t",
   "option_list" :
   {
-    "quiet"  :"0",
-    "normal":"10",
-
     "other" :" 1",
     "unknown" :" 2",
     "ASCII" :" 3",
@@ -269,5 +266,5 @@
     "CP50220" :" 2260",
     "reserved" :" 3000"
   },
-  "default_option" :"normal"
+  "default_option" :"other"
 }
